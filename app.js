@@ -25,7 +25,6 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 
-/* CORS */
 app.use(cors({
     origin: '*',
     methods: ['GET', 'PUT', 'DELETE', 'PATCH', 'POST'],
@@ -38,7 +37,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Import Routes
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 // const authRouter = require('./routes/auth');

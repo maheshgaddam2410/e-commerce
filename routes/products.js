@@ -8,8 +8,8 @@ router.get('/', function (req, res) {
     let startValue;
     let endValue;
     if (page > 0) {
-        startValue = (page * limit) - limit;     // 0, 10, 20, 30
-        endValue = page * limit;                  // 10, 20, 30, 40
+        startValue = (page * limit) - limit;     
+        endValue = page * limit;                 
     } else {
         startValue = 0;
         endValue = 10;
@@ -75,21 +75,19 @@ router.get('/:prodId', (req, res) => {
         }).catch(err => res.json(err));
 });
 
-/* GET ALL PRODUCTS FROM ONE CATEGORY */
-router.get('/category/:catName', (req, res) => { // Sending Page Query Parameter is mandatory http://localhost:3636/api/products/category/categoryName?page=1
-    let page = (req.query.page !== undefined && req.query.page !== 0) ? req.query.page : 1;   // check if page query param is defined or not
-    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;   // set limit of items per page
+
+router.get('/category/:catName', (req, res) => { 
+    let page = (req.query.page !== undefined && req.query.page !== 0) ? req.query.page : 1;   
+    const limit = (req.query.limit !== undefined && req.query.limit !== 0) ? req.query.limit : 10;  
     let startValue;
     let endValue;
     if (page > 0) {
-        startValue = (page * limit) - limit;      // 0, 10, 20, 30
-        endValue = page * limit;                  // 10, 20, 30, 40
-    } else {
+        startValue = (page * limit) - limit;      
+        endValue = page * limit;                 
         startValue = 0;
         endValue = 10;
     }
 
-    // Get category title value from param
     const cat_title = req.params.catName;
 
     database.table('products as p')
